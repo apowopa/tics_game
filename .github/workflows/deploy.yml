@@ -30,21 +30,18 @@ jobs:
           cache: true
 
       - name: Install dependencies
-        working-directory: game
         run: flutter pub get
 
       - name: Run tests
-        working-directory: game
         run: flutter test
 
       - name: Build Flutter Web
-        working-directory: game
         run: flutter build web --release --base-href "/${{ github.event.repository.name }}/"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: game/build/web
+          path: build/web
 
   deploy:
     environment:
